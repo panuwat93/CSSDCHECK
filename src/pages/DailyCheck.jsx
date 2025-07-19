@@ -137,28 +137,6 @@ export default function DailyCheck() {
             </Select>
           </FormControl>
         </Stack>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          sx={{
-            mt: 1,
-            borderRadius: 12,
-            fontWeight: 600,
-            color: '#fff',
-            background: 'linear-gradient(90deg, #7C3AED 0%, #42a5f5 100%)',
-            '&.Mui-disabled': {
-              color: '#fff',
-              background: 'linear-gradient(90deg, #7C3AED 0%, #42a5f5 100%)',
-              opacity: 0.5,
-            },
-          }}
-          fullWidth
-          disabled={saving || !checker || rows.some(r => r.count === '')}
-          onClick={handleSave}
-        >
-          {saving ? 'กำลังบันทึก...' : 'บันทึกลง GOOGLE SHEET'}
-        </Button>
       </Paper>
       <TableContainer component={Paper} sx={{ width: '100%', boxShadow: 0, borderRadius: 0 }}>
         <Table stickyHeader size="small" sx={{ width: '100%' }}>
@@ -216,6 +194,37 @@ export default function DailyCheck() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Box sx={{
+        position: { xs: 'fixed', sm: 'static' },
+        bottom: { xs: 24, sm: 'auto' },
+        left: 0,
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        zIndex: 10,
+        pb: { xs: 2, sm: 0 },
+        background: { xs: 'rgba(255,255,255,0.9)', sm: 'none' }
+      }}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          sx={{
+            borderRadius: 12,
+            fontWeight: 600,
+            color: '#fff',
+            width: { xs: '90%', sm: 400 },
+            background: 'linear-gradient(90deg, #7C3AED 0%, #42a5f5 100%)',
+            mt: 2
+          }}
+          fullWidth
+          disabled={saving || !checker || rows.some(r => r.count === '')}
+          onClick={handleSave}
+        >
+          {saving ? 'กำลังบันทึก...' : 'บันทึกลง GOOGLE SHEET'}
+        </Button>
+      </Box>
       <Snackbar
         open={alert.open}
         autoHideDuration={3000}
