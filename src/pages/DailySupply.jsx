@@ -102,8 +102,11 @@ export default function DailySupply() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row, idx) => (
-                  <TableRow key={row.name}>
+                {rows.filter(row => row.need > 0).map((row, idx) => (
+                  <TableRow
+                    key={row.name}
+                    sx={row.ok > row.stock ? { background: '#ffeaea' } : {}}
+                  >
                     <TableCell>{row.name}</TableCell>
                     <TableCell align="center">{row.stock}</TableCell>
                     <TableCell align="center">{row.ok}</TableCell>
