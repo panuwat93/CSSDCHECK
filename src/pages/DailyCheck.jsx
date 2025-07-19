@@ -196,15 +196,12 @@ export default function DailyCheck() {
       </TableContainer>
 
       <Box sx={{
-        position: { xs: 'fixed', sm: 'static' },
-        bottom: { xs: 24, sm: 'auto' },
-        left: 0,
-        width: '100%',
+        width: { xs: '100%', sm: 400 },
+        mx: 'auto',
         display: 'flex',
         justifyContent: 'center',
-        zIndex: 10,
-        pb: { xs: 2, sm: 0 },
-        background: { xs: 'rgba(255,255,255,0.9)', sm: 'none' }
+        mt: 3,
+        mb: 2
       }}>
         <Button
           variant="contained"
@@ -214,9 +211,8 @@ export default function DailyCheck() {
             borderRadius: 12,
             fontWeight: 600,
             color: '#fff',
-            width: { xs: '90%', sm: 400 },
-            background: 'linear-gradient(90deg, #7C3AED 0%, #42a5f5 100%)',
-            mt: 2
+            width: '100%',
+            background: 'linear-gradient(90deg, #7C3AED 0%, #42a5f5 100%)'
           }}
           fullWidth
           disabled={saving || !checker || rows.some(r => r.count === '')}
