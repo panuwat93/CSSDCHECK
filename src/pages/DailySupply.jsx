@@ -47,7 +47,7 @@ export default function DailySupply() {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch('http://localhost:3001/api/latest-ok');
+        const res = await fetch('/api/latest-ok');
         const data = await res.json();
         if (!data.latest) {
           setRows([]);

@@ -83,7 +83,7 @@ export default function DailyCheck() {
     // เตรียมข้อมูลส่งไป backend
     const values = [date, checker, ...rows.flatMap(row => [row.count, row.expire || 'no'])];
     try {
-      const res = await fetch('http://localhost:3001/api/append', {
+      const res = await fetch('/api/append', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ values }),

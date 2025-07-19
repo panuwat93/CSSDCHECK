@@ -21,7 +21,7 @@ export default function MonthlySummary() {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch('http://localhost:3001/api/monthly-ok');
+        const res = await fetch('/api/monthly-ok');
         const data = await res.json();
         if (!data.data || data.data.length === 0) {
           setRows([]);
