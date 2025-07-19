@@ -1,16 +1,21 @@
 {
-  "name": "OK Check อุปกรณ์เวรตู้",
-  "short_name": "OK Check",
+  "name": "SICU CSSD",
+  "short_name": "SICU CSSD",
   "description": "แอปตรวจเช็คอุปกรณ์เวรตู้และบันทึกลง Google Sheet",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#f5f7fa",
-  "theme_color": "#1565c0",
+  "background_color": "#ffffff",
+  "theme_color": "#6c63ff",
   "icons": [
     {
-      "src": "/vite.svg",
+      "src": "/logo.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 } 
