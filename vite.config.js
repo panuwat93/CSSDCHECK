@@ -9,18 +9,23 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'OK Check อุปกรณ์เวรตู้',
-        short_name: 'OK Check',
-        description: 'แอปตรวจเช็คอุปกรณ์เวรตู้และบันทึกลง Google Sheet',
-        theme_color: '#1565c0',
-        background_color: '#f5f7fa',
+        name: 'SICU CSSD',
+        short_name: 'SICU CSSD',
+        description: 'ระบบตรวจเช็คและบันทึกอุปกรณ์ประจำวัน',
+        theme_color: '#6c63ff',
+        background_color: '#ffffff',
         display: 'standalone',
         start_url: '.',
         icons: [
           {
-            src: '/vite.svg',
+            src: '/logo.png',
             sizes: '192x192',
-            type: 'image/svg+xml',
+            type: 'image/png',
+          },
+          {
+            src: '/logo.png',
+            sizes: '512x512',
+            type: 'image/png',
           },
         ],
       },
