@@ -29,13 +29,23 @@ export default function MonthlySummary() {
         } else {
           // data.data: [ [date, checker, ...], ... ]
           const days = getDaysInMonth(year, month);
+          const todayStr = new Date().toISOString().slice(0, 10);
           const summary = [];
           for (let d = 1; d <= days; d++) {
             const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
             const found = data.data.find(row => row[0] && row[0].startsWith(dateStr));
+            const isFuture = dateStr > todayStr;
+            let checker = '';
+            let showNoChecker = false;
+            if (!isFuture) {
+              checker = found ? (found[1] || '') : '';
+              showNoChecker = !found;
+            }
             summary.push({
               date: dateStr,
-              checker: found ? (found[1] || '') : '',
+              checker,
+              showNoChecker,
+              isFuture,
             });
           }
           setRows(summary);
@@ -94,10 +104,13 @@ export default function MonthlySummary() {
               </TableHead>
               <TableBody>
                 {rows.map((row, idx) => (
-                  <TableRow key={row.date} sx={row.checker ? {} : { background: '#ffeaea' }}>
+                  <TableRow key={row.date} sx={row.showNoChecker ? { background: '#ffeaea' } : {}}>
                     <TableCell>{row.date}</TableCell>
-                    <TableCell sx={{ color: row.checker ? 'success.main' : 'error.main', fontWeight: 700 }}>
-                      {row.checker || 'ไม่มีผู้ตรวจสอบ'}
+                    <TableCell sx={{
+                      color: row.showNoChecker ? 'error.main' : (row.checker ? 'success.main' : 'inherit'),
+                      fontWeight: row.showNoChecker || row.checker ? 700 : 400
+                    }}>
+                      {row.isFuture ? '' : (row.checker || (row.showNoChecker ? 'ไม่มีผู้ตรวจสอบ' : ''))}
                     </TableCell>
                   </TableRow>
                 ))}
