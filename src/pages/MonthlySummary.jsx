@@ -10,7 +10,8 @@ function getDaysInMonth(year, month) {
 function serialToDate(serial) {
   const utc_days = Math.floor(serial - 25569);
   const utc_value = utc_days * 86400;
-  const date_info = new Date(utc_value * 1000);
+  // เพิ่ม offset 7 ชั่วโมง (25200 วินาที) สำหรับเวลาท้องถิ่นไทย
+  const date_info = new Date((utc_value + 25200) * 1000);
   return date_info.toISOString().slice(0, 10);
 }
 
