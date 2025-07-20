@@ -48,9 +48,15 @@ const ITEMS = [
   { name: 'ชุดต่อ ICD 3 ขวด', stock: 4 },
 ];
 
+function getTodayLocal() {
+  const tzOffset = (new Date()).getTimezoneOffset() * 60000;
+  const localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, 10);
+  return localISOTime;
+}
+
 export default function DailyCheck() {
   const navigate = useNavigate();
-  const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(getTodayLocal);
   const [checker, setChecker] = useState('');
   const [rows, setRows] = useState(
     ITEMS.map(item => ({ ...item, count: '', expire: '' }))
