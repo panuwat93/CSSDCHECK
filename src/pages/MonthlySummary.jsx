@@ -33,7 +33,7 @@ export default function MonthlySummary() {
           const summary = [];
           for (let d = 1; d <= days; d++) {
             const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-            const found = data.data.find(row => row[0] && row[0].startsWith(dateStr));
+            const found = data.data.find(row => row[0] && row[0].trim() === dateStr);
             const isFuture = dateStr > todayStr;
             let checker = '';
             let showNoChecker = false;
