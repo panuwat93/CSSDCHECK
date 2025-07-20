@@ -15,6 +15,12 @@ function serialToDate(serial) {
   return date_info.toISOString().slice(0, 10);
 }
 
+function getTodayLocal() {
+  const tzOffset = (new Date()).getTimezoneOffset() * 60000;
+  const localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, 10);
+  return localISOTime;
+}
+
 export default function MonthlySummary() {
   const navigate = useNavigate();
   const today = new Date();
@@ -37,7 +43,7 @@ export default function MonthlySummary() {
         } else {
           // data.data: [ [date, checker, ...], ... ]
           const days = getDaysInMonth(year, month);
-          const todayStr = new Date().toISOString().slice(0, 10);
+          const todayStr = getTodayLocal();
           const summary = [];
           for (let d = 1; d <= days; d++) {
             const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
