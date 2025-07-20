@@ -7,6 +7,13 @@ function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
 
+function serialToDate(serial) {
+  const utc_days = Math.floor(serial - 25569);
+  const utc_value = utc_days * 86400;
+  const date_info = new Date(utc_value * 1000);
+  return date_info.toISOString().slice(0, 10);
+}
+
 export default function MonthlySummary() {
   const navigate = useNavigate();
   const today = new Date();
@@ -33,7 +40,14 @@ export default function MonthlySummary() {
           const summary = [];
           for (let d = 1; d <= days; d++) {
             const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-            const found = data.data.find(row => row[0] && row[0].trim() === dateStr);
+            const found = data.data.find(row => {
+              if (!row[0]) return false;
+              let cell = row[0].toString().trim();
+              if (/^\d+$/.test(cell)) {
+                cell = serialToDate(Number(cell));
+              }
+              return cell === dateStr;
+            });
             const isFuture = dateStr > todayStr;
             let checker = '';
             let showNoChecker = false;
