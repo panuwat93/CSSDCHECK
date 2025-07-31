@@ -67,6 +67,10 @@ export default function DailyCheck() {
   const handleCountChange = (idx, value) => {
     const newRows = [...rows];
     newRows[idx].count = value.replace(/\D/, '');
+    // เมื่อใส่จำนวน ให้เซ็ตวันหมดอายุเป็น "ไม่มี" อัตโนมัติ
+    if (value.replace(/\D/, '') !== '') {
+      newRows[idx].expire = 'no';
+    }
     setRows(newRows);
   };
   const handleExpireChange = (idx, value) => {
