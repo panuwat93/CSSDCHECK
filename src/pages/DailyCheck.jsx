@@ -69,7 +69,7 @@ export default function DailyCheck() {
     newRows[idx].count = value.replace(/\D/, '');
     // เมื่อใส่จำนวน ให้เซ็ตวันหมดอายุเป็น "ไม่มี" อัตโนมัติ
     if (value.replace(/\D/, '') !== '') {
-      newRows[idx].expire = 'no';
+      newRows[idx].expire = 'ไม่มี';
     }
     setRows(newRows);
   };
