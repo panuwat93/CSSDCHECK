@@ -9,7 +9,7 @@ import PersonIcon from '@mui/icons-material/Person';
 const CHECKERS = [
   'ภาณุวัฒน์',
   'สุกัญญา',
-  'ณัชชกา',
+  'ณัทชกา',
   'ดวงแก้ว',
   'อรอุษา',
   'อัมพร',
